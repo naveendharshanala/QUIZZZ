@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> VIT EVENT REGISTRATION FORM </title>
+  <link rel = "stylesheet" href="form.css">
+  
+<script>
+    Array.prototype.contains = function(v){
+            for(var i=0; i< this.length; i++){
+                if(this[i] === v) return true;
+            }
+            return false;
+        }
+        Array.prototype.unique = function(){
+            var arr = [];
+            for(var i=0; i< this.length; i++){
+                if(!arr.contains(this[i])){
+                    arr.push(this[i]);
+                }
+            }
+            return arr;
+        };
+        function validateForm(){
+            var pwd = document.registration.password.value;
+            let regex1 = /(?=(.*[A-Z]))(?=(.*[a-z]))(?=(.*\d))(?!.*\s).{10,100}/i;
+            let regex2 = /(?=(.*[A-Z]))(?=(.*[a-z]))(?=(.*[~!@#\$%^\-_=+\[\]\{\}/;:,\.\?*]))(?!.*\s).{10,100}/i;
+            let regex3 = /(?=(.*[A-Z]))(?=(.*[~!@#\$%^\-_=+\[\]\{\}/;:,\.\?*]))(?=(.*\d))(?!.*\s).{10,100}/i;
+            let regex4 = /(?=(.*[a-z]))(?=(.*[~!@#\$%^\-_=+\[\]\{\}/;:,\.\?*]))(?=(.*\d))(?!.*\s).{10,100}/i;
+            let regex5 = /(?=(.*[A-Z]))(?=(.*[a-z]))(?=(.*\d))(?=(.*[~!@#\$%^\-_=+\[\]\{\}/;:,\.\?*]))(?!.*\s).{10,100}/i;
+            
+            if(((regex1.test(pwd)) || (regex2.test(pwd)) || (regex3.test(pwd)) || (regex4.test(pwd))) && (pwd.split("").unique().length >= 5)){
+                return true;
+            }else{
+                alert("Password should have 5 unique characters and atleast 3 of the following: uppercase, lowercase, numeric or spl character along with the length between 10 to 100");
+                return false;
+            }
+        };
+</script>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="black">
+  
+    <img src="https://vit.ac.in/sites/all/themes/vittheme/images/vitlogo.png" class="image2" />
+ 
+   
+  </div>
+  <h1>VIT ENTERANCE EXAM</h1>
+    <div class="border">
+    <h1> LOGIN HERE </h1>
+    <div class="height">
+    <form name="registration" class="registartion-form" onsubmit="return validateForm()" action="instructions.html" method="post">
+      <table>
+        <tr>
+          <td><label for="email">Email:</label></td>
+          <td><input type="email" name="email" pattern="[a-z]+[\.][a-z0-9]+@vitstudent.ac.in" id="email" placeholder="Enter Your Vit Email" required></td>
+        </tr>
+        <tr>
+          <td><label for="password">Password:</label></td>
+          <td><input type="password"  name="password" id="password" required></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="submit" class="submit" value="Login" /></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  </div>
+  </div>
+</body>
+</html>
